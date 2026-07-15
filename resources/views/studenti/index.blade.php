@@ -82,7 +82,16 @@
                         <td>{{ $student->godiste }}</td>
                         <td>{{ $student->prosjek }}</td>
                         <td>{{ $student->stipendija }} €</td>
-                        <td><a href="{{ route('studenti.edit', $student) }}">Uredi</a></td>
+                        <td><a href="{{ route('studenti.edit', $student) }}">Uredi</a>
+                            <form method="POST" action="{{ route('studenti.destroy', $student) }}" style="display: inline;" onsubmit="return confirm('Želite li stvarno obrisati ovog studenta?')">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit">
+                                Obriši
+                            </button>
+                        </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

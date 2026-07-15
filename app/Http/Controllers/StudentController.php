@@ -90,4 +90,13 @@ class StudentController extends Controller
             ->route('studenti.index')
             ->with('success', 'Student je uspješno ažuriran.');
     }
+
+    public function destroy(Student $student): RedirectResponse
+    {
+        $student->delete();
+
+        return redirect()
+            ->route('studenti.index')
+            ->with('success', 'Student je uspješno obrisan.');
+    }
 }
