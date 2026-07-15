@@ -99,4 +99,20 @@ class StudentController extends Controller
             ->route('studenti.index')
             ->with('success', 'Student je uspješno obrisan.');
     }
+
+    public function statistika(): View
+    {
+        $statistika = Student::query()
+            ->selectRaw('
+                status,
+                COUNT(*) as broj_studenata,
+                AVG(prosjek) as prosjecni_prosjek,
+                SUM(stipendija) as ukupne_stipendije
+            ')
+            ->groupBy('status')
+            ->orderBy('status')
+            ->get();
+
+        return view('studenti.statistika', compact('statistika'));
+    }
 }

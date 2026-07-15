@@ -41,19 +41,8 @@
     @endif
 
     <p>
-        <a
-            href="{{ route('studenti.create') }}"
-            style="
-                display: inline-block;
-                padding: 10px 15px;
-                background: #2563eb;
-                color: white;
-                text-decoration: none;
-                border-radius: 4px;
-            "
-        >
-            Dodaj studenta
-        </a>
+        <a href="{{ route('studenti.create') }}" >Dodaj studenta</a>
+        <a href="{{ route('studenti.statistika') }}">Statistika</a>
     </p>
     @if ($studenti->isEmpty())
         <p>Trenutno nema unesenih studenata.</p>
@@ -82,7 +71,8 @@
                         <td>{{ $student->godiste }}</td>
                         <td>{{ $student->prosjek }}</td>
                         <td>{{ $student->stipendija }} €</td>
-                        <td><a href="{{ route('studenti.edit', $student) }}">Uredi</a>
+                        <td>
+                            <a href="{{ route('studenti.edit', $student) }}">Uredi</a>
                             <form method="POST" action="{{ route('studenti.destroy', $student) }}" style="display: inline;" onsubmit="return confirm('Želite li stvarno obrisati ovog studenta?')">
                             @csrf
                             @method('DELETE')
