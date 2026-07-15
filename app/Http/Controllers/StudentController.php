@@ -53,4 +53,41 @@ class StudentController extends Controller
             ->route('studenti.index')
             ->with('success', 'Student je uspješno dodan.');
     }
+
+
+    public function edit(Student $student): View
+    {
+        return view('studenti.edit', compact('student'));
+    }
+
+    public function update(Request $request, Student $student): RedirectResponse
+    {
+        $validated = $request->validate([
+            'ime' => ['required', 'string', 'min:2', 'max:255'],
+            'prezime' => ['required', 'string', 'min:2', 'max:255'],
+            'status' => ['required', 'in:redovni,izvanredni'],
+            'godiste' => [
+                'required',
+                'integer',
+                'min:1980',
+                'max:' . date('Y'),
+            ],
+            'prosjek' => [
+                'required',
+                'numeric',
+                'between:1,5',
+            ],
+            'stipendija' => [
+                'required',
+                'numeric',
+                'min:0',
+            ],
+        ]);
+
+        $student->update($validated);
+
+        return redirect()
+            ->route('studenti.index')
+            ->with('success', 'Student je uspješno ažuriran.');
+    }
 }

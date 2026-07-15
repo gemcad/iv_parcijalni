@@ -68,6 +68,7 @@
                     <th>Godište</th>
                     <th>Prosjek</th>
                     <th>Stipendija</th>
+                    <th>Akcije</th>
                 </tr>
             </thead>
 
@@ -81,6 +82,7 @@
                         <td>{{ $student->godiste }}</td>
                         <td>{{ $student->prosjek }}</td>
                         <td>{{ $student->stipendija }} €</td>
+                        <td><a href="{{ route('studenti.edit', $student) }}">Uredi</a></td>
                     </tr>
                 @endforeach
             </tbody>
