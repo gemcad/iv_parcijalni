@@ -34,7 +34,27 @@
 
 <body>
     <h1>Popis studenata</h1>
+    @if (session('success'))
+        <p style="background: #dcfce7; color: #166534; padding: 12px;">
+            {{ session('success') }}
+        </p>
+    @endif
 
+    <p>
+        <a
+            href="{{ route('studenti.create') }}"
+            style="
+                display: inline-block;
+                padding: 10px 15px;
+                background: #2563eb;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+            "
+        >
+            Dodaj studenta
+        </a>
+    </p>
     @if ($studenti->isEmpty())
         <p>Trenutno nema unesenih studenata.</p>
     @else
